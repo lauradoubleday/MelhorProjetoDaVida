@@ -1,74 +1,69 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MelhorProjetoDaVida.CODE.DAL
+{
+    class AcessoBancoDados
     {
-        class AcessoBancoDados
+        MySqlConnection conexao;
+
+        public void Conectar()
         {
-            MySqlConnection conexao;
-
-            public void Conectar()
+            try
             {
-                try
-                {
-                    string conn = "Persist Security Info = false; " +
-                                  "server = localhost; " +
-                                  "database = bdprojetoemcamadas; " +
-                                  "uid = root; pwd=root";
+                string conn = "Persist Security Info = false; " +
+                              "server = localhost; " +
+                              "database = Laura_Doubleday; " +
+                              "uid = root; pwd=root";
 
-                    conexao = new MySqlConnection(conn);
-                    conexao.Open();
-                }
-                catch (MySqlException ex)
-                {
-                    throw new Exception("Não foi possível conectar ao banco de dados.\n" + ex.Message);
-                }
+                conexao = new MySqlConnection(conn);
+                conexao.Open();
             }
-
-            public DataTable ExecutarConsulta(string sql)
+            catch (MySqlException ex)
             {
-                try
-                {
-                    Conectar();
-                    MySqlDataAdapter dados = new MySqlDataAdapter(sql, conexao);
-                    DataTable dt = new DataTable();
-                    dados.Fill(dt);
-
-                    return dt;
-                }
-                catch (MySqlException ex)
-                {
-                    throw new Exception("Não foi possível executar a CONSULTA solicitada.\n" + ex.Message);
-                }
-                finally
-                {
-                    conexao.Close();
-                }
+                throw new Exception("Não foi possível conectar ao banco de dados.\n" + ex.Message);
             }
+        }
 
-            public void ExecutarComando(string sql)
+        public DataTable ExecutarConsulta(string sql)    
+        {
+            try
             {
                 Conectar();
+                MySqlDataAdapter dados = new MySqlDataAdapter(sql, conexao);
+                DataTable dt = new DataTable();
+                dados.Fill(dt);  
 
-                try
-                {
-                    MySqlCommand comando = new MySqlCommand(sql, conexao);
-                    comando.ExecuteNonQuery();
-                }
-                catch (MySqlException ex)
-                {
-                    throw new Exception("A instrução não foi realizada.\n" + ex.Message);
-                }
-                finally
-                {
-                    conexao.Close();
-                }
+                return dt;
+            }
+            catch (MySqlException ex)
+            {
+                throw new Exception("Não foi possível executar a CONSULTA solicitada.\n" + ex.Message);
+            }
+            finally
+            {
+                conexao.Close();
+            }
+        }
+
+        public void ExecutarComando(string sql)  
+        {
+            Conectar();
+
+            try
+            {
+                MySqlCommand comando = new MySqlCommand(sql, conexao);
+                comando.ExecuteNonQuery();    
+            }
+            catch (MySqlException ex)
+            {
+                throw new Exception("A instrução não foi realizada.\n" + ex.Message);
+            }
+            finally
+            {
+                conexao.Close();       
             }
         }
     }
-
+}

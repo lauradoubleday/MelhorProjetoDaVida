@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6B721390-EAEF-4671-9504-D2CC9953643F}</ProjectGuid>
+    <ProjectGuid>{B9CA74D7-1835-4621-90B1-ACD2ACCACDD7}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>MelhorProjetoDaVida</RootNamespace>
     <AssemblyName>MelhorProjetoDaVida</AssemblyName>
@@ -89,19 +89,34 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CODE\BLL\CadastroBLL.cs" />
+    <Compile Include="CODE\BLL\DadosBLL.cs" />
     <Compile Include="CODE\BLL\LoginBLL.cs" />
     <Compile Include="CODE\DAL\AcessoBancoDados.cs" />
+    <Compile Include="CODE\DTO\CadastroDTO.cs" />
     <Compile Include="CODE\DTO\DadosDTO.cs" />
     <Compile Include="CODE\DTO\LoginDTO.cs" />
-    <Compile Include="Ui\FrmLogin.cs">
+    <Compile Include="CODE\DTO\Usuario.cs" />
+    <Compile Include="Ui\Frm_Cadastro.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Ui\FrmLogin.Designer.cs">
-      <DependentUpon>FrmLogin.cs</DependentUpon>
+    <Compile Include="Ui\Frm_Cadastro.Designer.cs">
+      <DependentUpon>Frm_Cadastro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\Frm_Dados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ui\Frm_Dados.Designer.cs">
+      <DependentUpon>Frm_Dados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\Frm_Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ui\Frm_Login.Designer.cs">
+      <DependentUpon>Frm_Login.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="CODE\DTO\UsuarioDTO.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -111,8 +126,14 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Ui\FrmLogin.resx">
-      <DependentUpon>FrmLogin.cs</DependentUpon>
+    <EmbeddedResource Include="Ui\Frm_Cadastro.resx">
+      <DependentUpon>Frm_Cadastro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ui\Frm_Dados.resx">
+      <DependentUpon>Frm_Dados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ui\Frm_Login.resx">
+      <DependentUpon>Frm_Login.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -128,6 +149,5 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
